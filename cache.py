@@ -20,3 +20,16 @@ class Cache:
         if chave not in self.d.keys():
             return None
         return self.d[chave]
+
+
+
+def fib(n, cache=Cache(100)):
+  if n==1 or n==2:
+    return 1
+  if cache.get(n):
+    return cache.get(n)
+
+  cache.put(n, fib(n-1, cache) + fib(n-2, cache))
+  return cache.get(n)
+
+print(fib(110))
